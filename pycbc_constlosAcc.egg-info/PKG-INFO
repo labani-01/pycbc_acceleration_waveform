@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: pycbc-constlosAcc
+Version: 0.0.dev0
+Summary: New waveform incorporating doppler shift when a new parameter, line of sight acceleration is constant plugin PyCBC
+Home-page: http://www.pycbc.org/
+Download-URL: https://github.com/labani-01/pycbc_acceleration_waveform
+Author: The PyCBC team
+Author-email: labannyo2000@gmail.org
+Keywords: pycbc,signal processing,gravitational waves
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
