@@ -25,7 +25,7 @@ setup (
     keywords = ['pycbc', 'signal processing', 'gravitational waves'],
     install_requires = ['pycbc'],
     py_modules = ['constlosAcc'],
-    entry_points = {"pycbc.waveform.td":"constlosAcc = const_los_Acc_td"},
+    entry_points = {"pycbc.waveform.td":"constlosAcc = constlosAcc:const_los_Acc_td"},
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',

@@ -1,2 +1,2 @@
 [pycbc.waveform.td]
-constlosAcc = const_los_Acc_td
+constlosAcc = constlosAcc:const_los_Acc_td
