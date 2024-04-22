@@ -1,11 +1,12 @@
-def const_los_Acc_td(v0, acc, **kwds):
+def const_los_Acc_td(v0, acc, i, **kwds):
     dt = kwds['delta_t']
     from pycbc.waveform import get_td_waveform
+    from pycbc.waveform import td_approximants, fd_approximants
     from pycbc.types import TimeSeries
     import numpy as np
     if 'approximant' in kwds:
         kwds.pop('approximant')
-    hp,hc = get_td_waveform(approximant ='SEOBNRv4', **kwds)
+    hp,hc = get_td_waveform(approximant =td_approximants()[i], **kwds)
     t1 = hp.sample_times[np.argmax(hp)+1:-1] #after zero
     t2 = hp.sample_times[1:np.argmax(hp)+2]
     dt1 = np.full((len(t1),), dt, dtype=float)
