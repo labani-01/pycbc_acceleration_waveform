@@ -1,4 +1,4 @@
-def const_los_Acc_td(v0, acc, i, **kwds):
+def const_los_Acc_td(v0, acc, base_model, **kwds):
     dt = kwds['delta_t']
     from pycbc.waveform import get_td_waveform
     from pycbc.waveform import td_approximants, fd_approximants
@@ -6,7 +6,7 @@ def const_los_Acc_td(v0, acc, i, **kwds):
     import numpy as np
     if 'approximant' in kwds:
         kwds.pop('approximant')
-    hp,hc = get_td_waveform(approximant =td_approximants()[i], **kwds)
+    hp,hc = get_td_waveform(approximant = base_model, **kwds)
     t1 = hp.sample_times[np.argmax(hp)+1:-1] #after zero
     t2 = hp.sample_times[1:np.argmax(hp)+2]
     dt1 = np.full((len(t1),), dt, dtype=float)
