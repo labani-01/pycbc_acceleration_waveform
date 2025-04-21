@@ -3,6 +3,8 @@ def const_los_Acc_td(v0, acc, base_model, n, **kwds):
     from pycbc.waveform import get_td_waveform
     from pycbc.waveform import td_approximants, fd_approximants
     from pycbc.types import TimeSeries
+    from pycbc.waveform import taper_timeseries
+    from pycbc.waveform import td_taper
     import numpy as np
     if 'approximant' in kwds:
         kwds.pop('approximant')

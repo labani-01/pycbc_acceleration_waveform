@@ -1,4 +1,4 @@
-Metadata-Version: 2.2
+Metadata-Version: 2.1
 Name: pycbc-constlosAcc
 Version: 0.0.dev0
 Summary: New waveform incorporating doppler shift when a new parameter, line of sight acceleration is constant plugin PyCBC
@@ -17,11 +17,3 @@ Classifier: Topic :: Scientific/Engineering :: Astronomy
 Classifier: Topic :: Scientific/Engineering :: Physics
 Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
 Requires-Dist: pycbc
-Dynamic: author
-Dynamic: author-email
-Dynamic: classifier
-Dynamic: download-url
-Dynamic: home-page
-Dynamic: keywords
-Dynamic: requires-dist
-Dynamic: summary
