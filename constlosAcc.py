@@ -9,6 +9,7 @@ def const_los_Acc_td(v0, acc, base_model, n, **kwds):
     if 'approximant' in kwds:
         kwds.pop('approximant')
     hp_base,hc_base = get_td_waveform(approximant = base_model, **kwds)
+    threshold = 0.001*max(np.abs(hp_base))
     filtered_array = hp_base.sample_times[np.absolute(acc * hp_base.sample_times)<n]
     hp = hp_base[np.absolute(acc * hp_base.sample_times)<n]
     hc = hc_base[np.absolute(acc * hp_base.sample_times)<n]
@@ -27,6 +28,9 @@ def const_los_Acc_td(v0, acc, base_model, n, **kwds):
     t_val = np.arange(np.min(t_new), np.max(t_new), dt)
     hp_interp = np.interp(t_val, t_new, hp)
     hc_interp = np.interp(t_val, t_new, hc)
+    mask = np.abs(hp_interp)>threshold
+    hp_interp = hp_interp[mask]
+    hc_interp = hc_interp[mask]
     hp_new = TimeSeries(hp_interp, delta_t=dt, epoch=min(t_val))
     hc_new = TimeSeries(hc_interp, delta_t=dt, epoch=min(t_val))
     hp_taper = taper_timeseries(hp_new, tapermethod='startend')
