@@ -10,7 +10,7 @@ def const_los_Acc_td(v0, acc, base_model, n, **kwds):
         kwds.pop('approximant')
     hp_base,hc_base = get_td_waveform(approximant = base_model, **kwds)
     peak_idx = np.argmax(np.abs(hp_base))
-    threshold = 10**(-10) * max(np.abs(hp_base))
+    threshold = 10**(-6) * max(np.abs(hp_base))
     mask_before_peak = np.abs(hp_base[:peak_idx]) < threshold
     if np.any(mask_before_peak):
         trim_idx = np.where(mask_before_peak)[0][-1] + 1
