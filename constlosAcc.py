@@ -3,7 +3,6 @@ def const_los_Acc_td(v0, acc, base_model, n, **kwds):
     from pycbc.waveform import get_td_waveform
     from pycbc.waveform import td_approximants, fd_approximants
     from pycbc.types import TimeSeries
-    from pycbc.waveform import taper_timeseries
     from pycbc.waveform import td_taper
     import numpy as np
     if 'approximant' in kwds:
@@ -39,7 +38,7 @@ def const_los_Acc_td(v0, acc, base_model, n, **kwds):
     hc_interp = np.interp(t_val, t_new, hc)
     hp_new = TimeSeries(hp_interp, delta_t=dt, epoch=min(t_val))
     hc_new = TimeSeries(hc_interp, delta_t=dt, epoch=min(t_val))
-    hp_taper = taper_timeseries(hp_new, tapermethod='startend')
-    hc_taper = taper_timeseries(hc_new, tapermethod='startend')
+    hp_taper = hp_new.taper_timeseries('startend')
+    hc_taper = hc_new.taper_timeseries('startend')
     return(hp_taper, hc_taper)
     
