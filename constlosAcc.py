@@ -35,7 +35,7 @@ def const_los_Acc_td(v0, acc, base_model, n, **kwds):
     hp_new = TimeSeries(hp_interp, delta_t=dt, epoch=t_val[0])
     hc_new = TimeSeries(hc_interp, delta_t=dt, epoch=t_val[0])
  
-    hp_taper = hp_new.taper_timeseries('startend')
-    hc_taper = hc_new.taper_timeseries('startend')
+    hp_taper = hp_new.taper_timeseries('startend', tapermethod='constant', taper_window=0.01)
+    hc_taper = hc_new.taper_timeseries('startend', tapermethod='constant', taper_window=0.01)
 
     return(hp_taper, hc_taper)
