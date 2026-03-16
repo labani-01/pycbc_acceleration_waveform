@@ -9,25 +9,26 @@ def const_los_Acc_td(v0, acc, base_model, n, **kwds):
     hp_base,hc_base = get_td_waveform(approximant = base_model, **kwds)
      
     time = hp_base.sample_times
-    #remove the duplication and calculate it once
-    filtered_array = time[np.absolute(v0 + acc * time) < n]
-    hp = hp_base[np.absolute(acc * time) < n]
-    hc = hc_base[np.absolute(acc * time) < n]
 
-    peak_idx = np.argmax(np.abs(hp))
+    non_rel = np.absolute(v0 + acc * time) < n
+    filtered_array = time[non_rel]
+    hp = hp_base[non_rel]
+    hc = hc_base[non_rel]
+
+    zero_idx = np.argmin(np.abs(filtered_array))
+    t0 = filtered_array[zero_idx]
  
-    dt_array = np.diff(filtered_array)
+    dt_array = np.full(len(filtered_array) - 1, dt)
     t_left = filtered_array[:-1]
     dt_new = (1 + v0 + acc * t_left) * dt_array
     t_new = np.concatenate([[filtered_array[0]], filtered_array[0] + np.cumsum(dt_new)])
 
-    #just calculate the zero idx instead of peak_idx
-    t_new_peak = t_new[peak_idx]
-    t_new_shifted = t_new - t_new_peak
-    
-    #read np.min(t_new_shifted), np.max(t_new_shifted) and use dt inplace of n_samples
-    n_samples = int(np.round((np.max(t_new_shifted) - np.min(t_new_shifted)) / dt)) + 1
-    t_val = np.linspace(np.min(t_new_shifted), np.max(t_new_shifted), n_samples)
+    t_shift = t_new[zero_idx] - t0
+    t_new_shifted = t_new - t_shift
+
+    t_min = t_new_shifted.min()
+    t_max = t_new_shifted.max()
+    t_val = np.arange(t_min, t_max + dt, dt)
 
     k = 3
     hp_spline = make_interp_spline(t_new_shifted, hp, k=k)
