@@ -1,4 +1,4 @@
-def const_los_Acc_td(v0, acc, base_model, n, **kwds):
+def const_los_Acc_td(v0, acc, base_model, n, tw, **kwds):
     dt = kwds['delta_t']
     from pycbc.waveform import get_td_waveform
     from pycbc.types import TimeSeries
@@ -39,7 +39,7 @@ def const_los_Acc_td(v0, acc, base_model, n, **kwds):
     hp_new = TimeSeries(hp_interp, delta_t=dt, epoch=t_val[0])
     hc_new = TimeSeries(hc_interp, delta_t=dt, epoch=t_val[0])
  
-    hp_taper = hp_new.taper_timeseries('start', tapermethod='constant', taper_window=0.3)
-    hc_taper = hc_new.taper_timeseries('start', tapermethod='constant', taper_window=0.3)
+    hp_taper = hp_new.taper_timeseries('start', tapermethod='constant', taper_window=tw)
+    hc_taper = hc_new.taper_timeseries('start', tapermethod='constant', taper_window=tw)
 
     return(hp_taper, hc_taper)
